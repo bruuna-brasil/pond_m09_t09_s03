@@ -1,0 +1,15 @@
+Feature: Verificação dos ganhos dos entregadores # features/verificacao_ganhos.feature:1
+
+  Scenario: Garantir que o valor exibido dos ganhos é coerente com o cálculo real      # features/verificacao_ganhos.feature:3
+    Given que a UI está exibindo os ganhos do entregador                               # features/steps/steps_verificacao.py:25
+    When eu realizo o cálculo esperado dos ganhos                                      # features/steps/steps_verificacao.py:29
+    And eu consulto o valor exibido pela UI                                            # features/steps/steps_verificacao.py:34
+    Then a diferença entre o valor calculado e o valor exibido deve ser menor que 0.5% # features/steps/steps_verificacao.py:39
+
+Feature: Verificação do valor da taxa dos pedidos # features/verificacao_valores.feature:2
+
+  Scenario: Verificar se o valor exibido na UI é igual ao valor retornado pela API   # features/verificacao_valores.feature:4
+    Given que a UI está exibindo a taxa do pedido                                    # features/steps/steps_verificacao.py:4
+    When eu consulto o valor da taxa diretamente da API                              # features/steps/steps_verificacao.py:13
+    Then o valor exibido na UI deve ser exatamente igual ao valor retornado pela API # features/steps/steps_verificacao.py:19
+
