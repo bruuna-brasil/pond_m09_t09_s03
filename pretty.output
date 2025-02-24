@@ -1,15 +1,27 @@
+Feature: Performance da API de taxas # features/verifIcacao_performance.feature:1
+
+  Scenario: Verificar tempo de resposta da API de taxas        # features/verifIcacao_performance.feature:3
+    Given que estou fazendo uma requisição para a API de taxas # features/steps/steps_verificacao.py:45
+    When a API responde                                        # features/steps/steps_verificacao.py:51
+    Then o tempo de resposta deve ser menor que 200ms          # features/steps/steps_verificacao.py:55
+
 Feature: Verificação dos ganhos dos entregadores # features/verificacao_ganhos.feature:1
 
   Scenario: Garantir que o valor exibido dos ganhos é coerente com o cálculo real      # features/verificacao_ganhos.feature:3
-    Given que a UI está exibindo os ganhos do entregador                               # features/steps/steps_verificacao.py:25
-    When eu realizo o cálculo esperado dos ganhos                                      # features/steps/steps_verificacao.py:29
-    And eu consulto o valor exibido pela UI                                            # features/steps/steps_verificacao.py:34
-    Then a diferença entre o valor calculado e o valor exibido deve ser menor que 0.5% # features/steps/steps_verificacao.py:39
+    Given que a UI está exibindo os ganhos do entregador                               # features/steps/steps_verificacao.py:23
+    When eu realizo o cálculo esperado dos ganhos                                      # features/steps/steps_verificacao.py:27
+    And eu consulto o valor exibido pela UI                                            # features/steps/steps_verificacao.py:32
+    Then a diferença entre o valor calculado e o valor exibido deve ser menor que 0.5% # features/steps/steps_verificacao.py:37
 
 Feature: Verificação do valor da taxa dos pedidos # features/verificacao_valores.feature:2
 
   Scenario: Verificar se o valor exibido na UI é igual ao valor retornado pela API   # features/verificacao_valores.feature:4
-    Given que a UI está exibindo a taxa do pedido                                    # features/steps/steps_verificacao.py:4
-    When eu consulto o valor da taxa diretamente da API                              # features/steps/steps_verificacao.py:13
-    Then o valor exibido na UI deve ser exatamente igual ao valor retornado pela API # features/steps/steps_verificacao.py:19
+    Given que a UI está exibindo a taxa do pedido                                    # features/steps/steps_verificacao.py:7
+    When eu consulto o valor da taxa diretamente da API                              # features/steps/steps_verificacao.py:11
+    Then o valor exibido na UI deve ser exatamente igual ao valor retornado pela API # features/steps/steps_verificacao.py:17
+
+  Scenario: API retorna um valor nulo para a taxa          # features/verificacao_valores.feature:9
+    Given a UI está exibindo um valor de taxa              # features/steps/steps_verificacao.py:60
+    When a API retorna um valor nulo para a taxa do pedido # features/steps/steps_verificacao.py:64
+    Then a UI deve exibir uma mensagem de erro apropriada  # features/steps/steps_verificacao.py:68
 
